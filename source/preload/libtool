@@ -96,7 +96,7 @@ EGREP="/c/mingw/msys/1.0/bin/grep -E"
 FGREP="/c/mingw/msys/1.0/bin/grep -F"
 
 # A BSD- or MS-compatible name lister.
-NM="/c/MinGW/bin/nm"
+NM="/c/mingw64/bin/nm"
 
 # Whether we need soft or hard links.
 LN_S="cp -p"
@@ -167,7 +167,7 @@ LTCC="gcc"
 LTCFLAGS="-g -O2"
 
 # Take the output of nm and produce a listing of raw symbols and C names.
-global_symbol_pipe="sed -n -e 's/^.*[	 ]\\([ABCDGIRSTW][ABCDGIRSTW]*\\)[	 ][	 ]*_\\([_A-Za-z][_A-Za-z0-9]*\\)\\{0,1\\}\$/\\1 _\\2 \\2/p' | sed '/ __gnu_lto/d'"
+global_symbol_pipe="sed -n -e 's/^.*[	 ]\\([ABCDGIRSTW][ABCDGIRSTW]*\\)[	 ][	 ]*\\([_A-Za-z][_A-Za-z0-9]*\\)\\{0,1\\}\$/\\1 \\2 \\2/p' | sed '/ __gnu_lto/d'"
 
 # Transform the output of nm in a proper C declaration.
 global_symbol_to_cdecl="sed -n -e 's/^T .* \\(.*\\)\$/extern int \\1();/p' -e 's/^[ABCDGIRSTW]* .* \\(.*\\)\$/extern char \\1;/p'"
@@ -282,7 +282,7 @@ finish_eval=""
 hardcode_into_libs=no
 
 # Compile-time system search path for libraries.
-sys_lib_search_path_spec="c:/mingw/lib/gcc/mingw32/4.8.1 c:/mingw/lib/gcc c:/mingw/mingw32/lib c:/mingw/lib "
+sys_lib_search_path_spec="c:/mingw64/lib/gcc/x86_64-w64-mingw32/lib c:/mingw64/lib/gcc c:/mingw64/x86_64-w64-mingw32/lib c:/mingw64/lib "
 
 # Run-time system search path for libraries.
 sys_lib_dlsearch_path_spec="/lib /usr/lib"
@@ -302,7 +302,7 @@ striplib="strip --strip-unneeded"
 
 
 # The linker used to build libraries.
-LD="c:/mingw/mingw32/bin/ld.exe"
+LD="c:/mingw64/x86_64-w64-mingw32/bin/ld.exe"
 
 # How to create reloadable object files.
 reload_flag=" -r"

@@ -38,7 +38,7 @@ INSTALL_DATA = ${INSTALL} -m 644
 mkinstalldirs = $(SHELL) ../build-aux/mkinstalldirs
 
 # Programs used by "make install-strip":
-STRIP = /c/MinGW/bin/strip
+STRIP = /c/mingw64/bin/strip
 INSTALL_STRIP_PROGRAM = $(install_sh) -c -s
 install_sh = ${SHELL} /c/projects/gd-libgd-259/libiconv/source/build-aux/install-sh
 
@@ -112,8 +112,8 @@ iconv_LDFLAGS = `if test -n '$(RELOCATABLE_LDFLAGS)'; then $(RELOCATABLE_LDFLAGS
 install : all force
 	if [ ! -d $(DESTDIR)$(bindir) ] ; then $(mkinstalldirs) $(DESTDIR)$(bindir) ; fi
 	case "mingw32" in \
-	  hpux*) $(CC) $(LDFLAGS) $(CFLAGS) $(iconv_LDFLAGS) iconv.o ../srclib/libicrt.a -L$(DESTDIR)$(libdir) -liconv -lintl $(OBJECTS_RES_yes) `if test -n '$(DESTDIR)'; then echo " -Wl,+b -Wl,$(libdir)"; fi` -o iconv$(EXEEXT);; \
-	  *) $(LIBTOOL_LINK) $(CC) $(LDFLAGS) $(CFLAGS) $(iconv_LDFLAGS) iconv.o ../srclib/libicrt.a $(DESTDIR)$(libdir)/libiconv.la -lintl $(OBJECTS_RES_yes) -o iconv$(EXEEXT);; \
+	  hpux*) $(CC) $(LDFLAGS) $(CFLAGS) $(iconv_LDFLAGS) iconv.o ../srclib/libicrt.a -L$(DESTDIR)$(libdir) -liconv  $(OBJECTS_RES_yes) `if test -n '$(DESTDIR)'; then echo " -Wl,+b -Wl,$(libdir)"; fi` -o iconv$(EXEEXT);; \
+	  *) $(LIBTOOL_LINK) $(CC) $(LDFLAGS) $(CFLAGS) $(iconv_LDFLAGS) iconv.o ../srclib/libicrt.a $(DESTDIR)$(libdir)/libiconv.la  $(OBJECTS_RES_yes) -o iconv$(EXEEXT);; \
 	esac
 	$(INSTALL_PROGRAM_ENV) $(LIBTOOL_INSTALL) $(INSTALL_PROGRAM) iconv$(EXEEXT) $(DESTDIR)$(bindir)/iconv$(EXEEXT)
 

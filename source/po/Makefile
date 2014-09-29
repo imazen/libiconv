@@ -44,20 +44,20 @@ install_sh = $(SHELL) ${SHELL} /c/projects/gd-libgd-259/libiconv/source/build-au
 MKDIR_P = /c/mingw/msys/1.0/bin/mkdir -p
 mkdir_p = /c/mingw/msys/1.0/bin/mkdir -p
 
-GMSGFMT_ = /c/MinGW/bin/msgfmt
-GMSGFMT_no = /c/MinGW/bin/msgfmt
-GMSGFMT_yes = /c/MinGW/bin/msgfmt
+GMSGFMT_ = :
+GMSGFMT_no = :
+GMSGFMT_yes = :
 GMSGFMT = $(GMSGFMT_$(USE_MSGCTXT))
-MSGFMT_ = /c/MinGW/bin/msgfmt
-MSGFMT_no = /c/MinGW/bin/msgfmt
-MSGFMT_yes = /c/MinGW/bin/msgfmt
+MSGFMT_ = :
+MSGFMT_no = :
+MSGFMT_yes = :
 MSGFMT = $(MSGFMT_$(USE_MSGCTXT))
-XGETTEXT_ = /c/MinGW/bin/xgettext
-XGETTEXT_no = /c/MinGW/bin/xgettext
-XGETTEXT_yes = /c/MinGW/bin/xgettext
+XGETTEXT_ = :
+XGETTEXT_no = :
+XGETTEXT_yes = :
 XGETTEXT = $(XGETTEXT_$(USE_MSGCTXT))
 MSGMERGE = msgmerge
-MSGMERGE_UPDATE = /c/MinGW/bin/msgmerge --update
+MSGMERGE_UPDATE = : --update
 MSGINIT = msginit
 MSGCONV = msgconv
 MSGFILTER = msgfilter
@@ -153,7 +153,7 @@ MSGMERGE_OPTIONS =
 	mv t-$@ $@
 
 
-all: check-macro-version all-yes
+all: check-macro-version all-no
 
 all-yes: stamp-po
 all-no:
@@ -266,7 +266,7 @@ $(POFILES): $(srcdir)/$(DOMAIN).pot
 
 install: install-exec install-data
 install-exec:
-install-data: install-data-yes
+install-data: install-data-no
 	if test "$(PACKAGE)" = "gettext-tools"; then \
 	  $(mkdir_p) $(DESTDIR)$(gettextsrcdir); \
 	  for file in $(DISTFILES.common) Makevars.template; do \
@@ -324,7 +324,7 @@ install-strip: install
 
 installdirs: installdirs-exec installdirs-data
 installdirs-exec:
-installdirs-data: installdirs-data-yes
+installdirs-data: installdirs-data-no
 	if test "$(PACKAGE)" = "gettext-tools"; then \
 	  $(mkdir_p) $(DESTDIR)$(gettextsrcdir); \
 	else \
@@ -368,7 +368,7 @@ installcheck:
 
 uninstall: uninstall-exec uninstall-data
 uninstall-exec:
-uninstall-data: uninstall-data-yes
+uninstall-data: uninstall-data-no
 	if test "$(PACKAGE)" = "gettext-tools"; then \
 	  for file in $(DISTFILES.common) Makevars.template; do \
 	    rm -f $(DESTDIR)$(gettextsrcdir)/$$file; \

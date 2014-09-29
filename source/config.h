@@ -35,7 +35,7 @@
 
 /* Define to 1 if translation of program messages to the user's native
    language is requested. */
-#define ENABLE_NLS 1
+/* #undef ENABLE_NLS */
 
 /* Define to 1 if the package shall run at any location in the file system. */
 /* #undef ENABLE_RELOCATABLE */
@@ -104,7 +104,7 @@
 
 /* Define if the GNU dcgettext() function is already present or preinstalled.
    */
-#define HAVE_DCGETTEXT 1
+/* #undef HAVE_DCGETTEXT */
 
 /* Define to 1 if you have the declaration of `clearerr_unlocked', and to 0 if
    you don't. */
@@ -187,7 +187,7 @@
 /* #undef HAVE_GETC_UNLOCKED */
 
 /* Define if the GNU gettext() function is already present or preinstalled. */
-#define HAVE_GETTEXT 1
+/* #undef HAVE_GETTEXT */
 
 /* Define if you have the iconv() function and it works. */
 #define HAVE_ICONV 1
@@ -275,7 +275,7 @@
 /* #undef HAVE_RAW_DECL_FPURGE */
 
 /* Define to 1 if fseeko is declared even after undefining macros. */
-/* #undef HAVE_RAW_DECL_FSEEKO */
+#define HAVE_RAW_DECL_FSEEKO 1
 
 /* Define to 1 if fstatat is declared even after undefining macros. */
 /* #undef HAVE_RAW_DECL_FSTATAT */
@@ -284,7 +284,7 @@
 /* #undef HAVE_RAW_DECL_FSYNC */
 
 /* Define to 1 if ftello is declared even after undefining macros. */
-/* #undef HAVE_RAW_DECL_FTELLO */
+#define HAVE_RAW_DECL_FTELLO 1
 
 /* Define to 1 if ftruncate is declared even after undefining macros. */
 #define HAVE_RAW_DECL_FTRUNCATE 1
@@ -362,7 +362,7 @@
 /* #undef HAVE_RAW_DECL_MEMMEM */
 
 /* Define to 1 if mempcpy is declared even after undefining macros. */
-/* #undef HAVE_RAW_DECL_MEMPCPY */
+#define HAVE_RAW_DECL_MEMPCPY 1
 
 /* Define to 1 if memrchr is declared even after undefining macros. */
 /* #undef HAVE_RAW_DECL_MEMRCHR */
@@ -407,7 +407,7 @@
 /* #undef HAVE_RAW_DECL_PIPE2 */
 
 /* Define to 1 if popen is declared even after undefining macros. */
-#define HAVE_RAW_DECL_POPEN 1
+/* #undef HAVE_RAW_DECL_POPEN */
 
 /* Define to 1 if pread is declared even after undefining macros. */
 /* #undef HAVE_RAW_DECL_PREAD */
@@ -479,7 +479,7 @@
 /* #undef HAVE_RAW_DECL_SIGPROCMASK */
 
 /* Define to 1 if sleep is declared even after undefining macros. */
-/* #undef HAVE_RAW_DECL_SLEEP */
+#define HAVE_RAW_DECL_SLEEP 1
 
 /* Define to 1 if snprintf is declared even after undefining macros. */
 #define HAVE_RAW_DECL_SNPRINTF 1
@@ -488,7 +488,7 @@
 /* #undef HAVE_RAW_DECL_SRANDOM_R */
 
 /* Define to 1 if stat is declared even after undefining macros. */
-/* #undef HAVE_RAW_DECL_STAT */
+#define HAVE_RAW_DECL_STAT 1
 
 /* Define to 1 if stpcpy is declared even after undefining macros. */
 /* #undef HAVE_RAW_DECL_STPCPY */
@@ -515,7 +515,7 @@
 /* #undef HAVE_RAW_DECL_STRNDUP */
 
 /* Define to 1 if strnlen is declared even after undefining macros. */
-/* #undef HAVE_RAW_DECL_STRNLEN */
+#define HAVE_RAW_DECL_STRNLEN 1
 
 /* Define to 1 if strpbrk is declared even after undefining macros. */
 #define HAVE_RAW_DECL_STRPBRK 1
@@ -608,7 +608,7 @@
 /* #undef HAVE_SIGNED_WINT_T */
 
 /* Define to 1 if the system has the type `sigset_t'. */
-#define HAVE_SIGSET_T 1
+/* #undef HAVE_SIGSET_T */
 
 /* Define to 1 if you have the <stdint.h> header file. */
 #define HAVE_STDINT_H 1
@@ -733,11 +733,11 @@
 
 /* Define to 1 if stat needs help when passed a directory name with a trailing
    slash */
-#define REPLACE_FUNC_STAT_DIR 1
+/* #undef REPLACE_FUNC_STAT_DIR */
 
 /* Define to 1 if stat needs help when passed a file name with a trailing
    slash */
-/* #undef REPLACE_FUNC_STAT_FILE */
+#define REPLACE_FUNC_STAT_FILE 1
 
 /* Define to 1 if strerror(0) does not return a message implying success. */
 /* #undef REPLACE_STRERROR_0 */
@@ -769,7 +769,7 @@
 
 /* Define to the prefix of C symbols at the assembler and linker level, either
    an underscore or empty. */
-#define USER_LABEL_PREFIX _
+#define USER_LABEL_PREFIX 
 
 /* Define to 1 if you want getc etc. to use unlocked I/O if available.
    Unlocked I/O can improve performance in unithreaded apps, but it is not
