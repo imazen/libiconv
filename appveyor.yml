@@ -23,6 +23,13 @@ environment:
 
 
 install:
+    - ps: if($env:build_platform -eq 'x64') {
+          $env:vcvar_arg = 'x86_amd64';
+        }
+        else {
+          $env:vcvar_arg = 'x86';
+        }
+  
   # get common functions
   - git clone https://github.com/imazen/gd-appveyor-helpers
   - ps: . .\gd-appveyor-helpers\appveyor_funcs.ps1
