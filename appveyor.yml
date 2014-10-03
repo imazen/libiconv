@@ -73,7 +73,7 @@ build_script:
   - if [%build_compiler%]==[mingw] (
       cd source &&
       c:\mingw\msys\1.0\bin\bash -c "PATH=/c/mingw/msys/1.0/bin:$PATH; ./configure; make; make check" &&
-      7z a %zip% .\lib\.libs\libiconv.a .\source\include\iconv.h &&
+      7z a %zip% .\lib\.libs\libiconv.a .\include\iconv.h &&
       appveyor PushArtifact %zip% &&
       cd .. )
   
