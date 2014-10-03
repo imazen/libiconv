@@ -1,0 +1,85 @@
+shallow_clone: true
+
+
+
+environment:
+  # settings
+  static_runtime: 1
+  
+  
+  matrix:
+    - build_platform: "x86"
+      build_compiler: "msvc"
+    
+    - build_platform: "x64"
+      build_compiler: "msvc"
+    
+    - build_platform: "x86"
+      build_compiler: "mingw"
+    
+    - build_platform: "x64"
+      build_compiler: "mingw"
+
+
+
+install:
+  # get common functions
+  - git clone https://github.com/imazen/gd-appveyor-helpers
+  - ps: . .\gd-appveyor-helpers\appveyor_funcs.ps1
+  
+  # get mingw-w64 (C:\mingw64)
+  - ps: if($env:build_compiler -eq 'mingw' -and $env:build_platform -eq 'x64') {
+      invoke 'curl' '-L -o mw64.7z "http://libgd.blob.core.windows.net/mingw/x86_64-4.9.1-release-posix-seh-rt_v3-rev1.7z"';
+      invoke '7z' 'x -oC:\ mw64.7z'; }
+  
+  # sh is breaking mingw builds; remove
+  - for %%i in (sh.exe) do @del "%%~$PATH:i"
+
+
+
+
+build_script:
+  
+  # build msvc
+  
+  - '"C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\vcvarsall" %vcvar_arg%'
+  
+  - SET zip=libiconv-msvc12-%build_platform%.zip
+  
+  - if [%build_compiler%]==[msvc] (
+      msbuild MSVC12\libiconv.sln /p:Configuration=Release /v:m &&
+      7z a %zip% .\MSVC12\libiconv_static\Release\libiconv_a.lib .\MSVC12\libiconv_dll\Release\libiconv.dll .\MSVC12\Release\libiconv.lib .\source\include\iconv.h &&
+      appveyor PushArtifact %zip% )
+  
+  - ps: if(Test-Path $env:zip) { zip2nuget $env:zip "libiconv-$($env:build_compiler)-$($env:build_platform)" }
+  
+  
+  
+  # build mingw
+  
+  - if [%build_compiler%]==[mingw] if [%build_platform%]==[x86] SET PATH=C:\MinGW\bin;%PATH%
+  - if [%build_compiler%]==[mingw] if [%build_platform%]==[x64] SET PATH=C:\mingw64\bin;%PATH%
+  
+  - SET zip=libiconv-mingw-%build_platform%.zip
+  - if [%static_runtime%]==[1] SET LDFLAGS=-static
+  
+  #- if [%build_compiler%]==[mingw] (
+  #    cd source &&
+  #    c:\mingw\msys\1.0\bin\bash -c "PATH=/c/mingw/msys/1.0/bin:$PATH; ./configure --enable-static --enable-shared; make; make check" &&
+  #    7z a %zip% .\lib\.libs\libiconv.a .\source\include\iconv.h &&
+  #    appveyor PushArtifact %zip% &&
+  #    cd .. )
+  
+  - ps: if(Test-Path $env:zip) { zip2nuget $env:zip "libiconv-$($env:build_compiler)-$($env:build_platform)" }
+
+
+
+test_script:
+  - SET fail=0
+  - ctest -C Release || SET fail=1 & ver > nul
+  - ps: Push-Ctest-Results '.'
+  - ps: Push-AppveyorArtifact Testing\Temporary\LastTest.log
+  - exit %fail%
+
+on_success:
+  - ps: Push-AppveyorArtifact *.nupkg
