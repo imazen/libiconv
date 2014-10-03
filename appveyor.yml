@@ -63,12 +63,12 @@ build_script:
   - SET zip=libiconv-mingw-%build_platform%.zip
   - if [%static_runtime%]==[1] SET LDFLAGS=-static
   
-  #- if [%build_compiler%]==[mingw] (
-  #    cd source &&
-  #    c:\mingw\msys\1.0\bin\bash -c "PATH=/c/mingw/msys/1.0/bin:$PATH; ./configure --enable-static --enable-shared; make; make check" &&
-  #    7z a %zip% .\lib\.libs\libiconv.a .\source\include\iconv.h &&
-  #    appveyor PushArtifact %zip% &&
-  #    cd .. )
+  - if [%build_compiler%]==[mingw] (
+      cd source &&
+      c:\mingw\msys\1.0\bin\bash -c "PATH=/c/mingw/msys/1.0/bin:$PATH; ./configure; make; make check" &&
+      7z a %zip% .\lib\.libs\libiconv.a .\source\include\iconv.h &&
+      appveyor PushArtifact %zip% &&
+      cd .. )
   
   - ps: if(Test-Path $env:zip) { zip2nuget $env:zip "libiconv-$($env:build_compiler)-$($env:build_platform)" }
 
