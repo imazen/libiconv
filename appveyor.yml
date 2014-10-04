@@ -74,6 +74,7 @@ build_script:
       appveyor PushArtifact %zip% &&
       cd .. )
   
+  - SET zip=source\%zip%
   - ps: if(Test-Path $env:zip) { zip2nuget $env:zip "libiconv-$($env:build_compiler)-$($env:build_platform)" }
 
 
