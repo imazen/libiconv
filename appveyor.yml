@@ -45,6 +45,9 @@ install:
 
 build_script:
   
+  - ps: $nupkg_b = "zlib-$($env:build_compiler)-$($env:build_platform)-$($env:APPVEYOR_REPO_BRANCH)";
+  - ps: $nupkg_c = "zlib-$($env:build_compiler)-$($env:build_platform)-$($env:APPVEYOR_REPO_COMMIT)";
+  
   # build msvc
   
   - '"C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\vcvarsall" %vcvar_arg%'
@@ -56,8 +59,9 @@ build_script:
       7z a %zip% .\MSVC12\libiconv_static\%rel_dir%\libiconv_a.lib .\MSVC12\libiconv_dll\%rel_dir%\libiconv.dll .\MSVC12\%rel_dir%\libiconv.lib .\source\include\iconv.h &&
       appveyor PushArtifact %zip% )
   
-  - ps: if(Test-Path $env:zip) { zip2nuget $env:zip "libiconv-$($env:build_compiler)-$($env:build_platform)" }
-  
+  - ps: if(Test-Path $env:zip) {
+          zip2nuget $env:zip $nupkg_b;
+          zip2nuget $env:zip $nupkg_c; }
   
   
   # build mingw
@@ -75,11 +79,13 @@ build_script:
       cd .. )
   
   - SET zip=source\%zip%
-  - ps: if(Test-Path $env:zip) { zip2nuget $env:zip "libiconv-$($env:build_compiler)-$($env:build_platform)" }
-
+  - ps: if(Test-Path $env:zip) {
+          zip2nuget $env:zip $nupkg_b;
+          zip2nuget $env:zip $nupkg_c; }
 
 
 test_script:
 
 on_success:
-  - ps: Push-AppveyorArtifact *.nupkg
+  - ps: Push-AppveyorArtifact "$nupkg_b*.nupkg"
+  - ps: Push-AppveyorArtifact "$nupkg_c*.nupkg"
