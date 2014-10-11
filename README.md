@@ -52,3 +52,7 @@ Current master:
 Last build:
 
 [![Build status](https://ci.appveyor.com/api/projects/status/l6w0admagp4l8l1w)](https://ci.appveyor.com/project/nathanaeljones/libiconv)
+
+### Drone.io build
+
+[![Build Status](https://drone.io/github.com/imazen/libiconv/status.png)](https://drone.io/github.com/imazen/libiconv/latest)
