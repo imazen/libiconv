@@ -47,11 +47,11 @@ After this the iconv PHP extension can be built static or shared.
 ### Appveyor builds
 Current master:
 
-[![Build status](https://ci.appveyor.com/api/projects/status/l6w0admagp4l8l1w/branch/master)](https://ci.appveyor.com/project/nathanaeljones/libiconv/branch/master)
+[![Build status](https://ci.appveyor.com/api/projects/status/l6w0admagp4l8l1w/branch/master)](https://ci.appveyor.com/project/imazen/libiconv/branch/master)
 
 Last build:
 
-[![Build status](https://ci.appveyor.com/api/projects/status/l6w0admagp4l8l1w)](https://ci.appveyor.com/project/nathanaeljones/libiconv)
+[![Build status](https://ci.appveyor.com/api/projects/status/l6w0admagp4l8l1w)](https://ci.appveyor.com/project/imazen/libiconv)
 
 ### Drone.io build
 
