@@ -55,7 +55,7 @@ build_script:
   
   - if [%build_compiler%]==[msvc] (
       msbuild MSVC12\libiconv.sln /p:Configuration=Release /v:m &&
-      7z a %zip% .\MSVC12\libiconv_static\Release\libiconv_a.lib .\MSVC12\libiconv_dll\%rel_dir%\libiconv.dll .\MSVC12\%rel_dir%\libiconv.lib .\source\include\iconv.h &&
+      7z a %zip% .\MSVC12\libiconv_static\Release\libiconv_a.lib .\MSVC12\libiconv_dll\Release\libiconv.dll .\MSVC12\Release\libiconv.lib .\source\include\iconv.h &&
       appveyor PushArtifact %zip% )
   
   - ps: if(Test-Path $env:zip) {
