@@ -132,7 +132,7 @@
       <ProgramDataBaseFileName>$(IntDir)libiconv_debug.pdb</ProgramDataBaseFileName>
     </ClCompile>
     <Link>
-      <OutputFile>x64\Debug\libiconv_debug.dll</OutputFile>
+      <OutputFile>Debug\libiconv_debug.dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
@@ -188,7 +188,7 @@
       <ProgramDataBaseFileName>$(IntDir)libiconv.pdb</ProgramDataBaseFileName>
     </ClCompile>
     <Link>
-      <OutputFile>x64\Release\libiconv.dll</OutputFile>
+      <OutputFile>Release\libiconv.dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
